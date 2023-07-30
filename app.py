@@ -3,9 +3,11 @@ from datetime import datetime
 
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
-from wtforms import Form
 
 from Flask_dojo.engine import Engine
+
+# from wtforms import Form
+
 
 app = Flask(__name__)
 
