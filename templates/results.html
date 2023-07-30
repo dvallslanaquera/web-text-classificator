@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <title>Results</title>
+    <main role="main" class="container">
+        <div class="row">
+            <h1>Sensitivity Analysis</h1>
+            <table class="fade-in">
+                <tr>
+                    <th>Category</th>
+                    <th>Risk Score</th>
+                </tr>
+                {% for segment, score in results.items() %} 
+                <tr> 
+                    <td>Terrorism</td>
+                    <td>{{ score }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+{% endblock content %}

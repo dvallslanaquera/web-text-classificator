@@ -3,8 +3,9 @@ from datetime import datetime
 
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+from wtforms import Form
 
-from forms import Form
+from Flask_dojo.engine import Engine
 
 app = Flask(__name__)
 
@@ -14,13 +15,17 @@ db = SQLAlchemy(app)
 
 
 # Build database
-class User(db.Model):
+class TextInput(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     input_text = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f"User('{self.username}', '{self.date}', '{self.input_text}')"
+        return f"TextInput('{self.id}', '{self.date}', '{self.input_text}')"
+
+
+# Dummy input
+text_input = [{"input": "adidas sport shoes"}]
 
 
 # Declare routes of the application
@@ -36,7 +41,7 @@ def index():
 @app.route("/results", methods=["GET"])
 def engine():
     user_input = request.args.get("input")
-    results = Engine(user_input=user_input).full_matching()
+    results = Engine().text_classification(input_text=user_input, return_prob=True)
     return render_template("results.html", results=results, title="Results")
 
 
