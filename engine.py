@@ -70,8 +70,18 @@ class Engine:
         # Import model
         class_model = joblib.load(self.model_path)
 
+        # Calculate rank
+        # The [0] value gives the probability of 1 and 0 classes
+        score = ""
+        if class_model.predict_proba(text_clean)[0][1] > 0.5:
+            score = "High"
+        elif class_model.predict_proba(text_clean)[0][1] > 0.25:
+            score = "Suspicious"
+        else:
+            score = "Safe"
+
         # Predict and return result
         if return_prob:
-            return {"Terrorism": class_model.predict_proba(text_clean)}
+            return {"Terrorism": score}
         else:
             return {"Terrorism": class_model.predict(text_clean)}

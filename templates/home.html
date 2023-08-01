@@ -7,7 +7,12 @@
         <div class="row">
             <form action="#" method="post">
                 <p>Enter text sample:</p>
-                <p><input type="text" name="nm" /></p>
+                <p>
+                    <input type="text" name="nm" class="custom-input" 
+                        onfocus="if (this.value === 'Enter your text for classification') {this.value = ''; this.style.color = 'black'; this.style.paddingTop = '0'; this.style.lineHeight = 'normal';}"
+                        onblur="if (this.value === '') {this.value = 'Enter your text for classification'; this.style.color = 'grey'; this.style.paddingTop = '10px'; this.style.lineHeight = '1.5';}"
+                        value="Enter your text for classification" />
+                </p>
                 <p><input type="submit" value="Run"/></p>
             </form>
         </div>

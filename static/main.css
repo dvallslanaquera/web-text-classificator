@@ -78,3 +78,21 @@ margin-bottom: 16px;
 .account-heading {
 font-size: 2.5rem;
 }
+
+.custom-input {
+    width: 900px;
+    height: 200px; 
+    color: grey;
+    position: relative;
+    padding: 10px;
+}
+
+.custom-input::before {
+    content: "Enter your text for classification";
+    color: grey;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
